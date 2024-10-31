@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Eva Six">
+<meta name="author" content="Matthias Schnetzer">
+
+<title>Childhood cultural capital and adult wealth</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap-247c20126170e7829d717ecba89f93fe.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="index_files/libs/quarto-contrib/intersection-observer-polyfill-1.0.0/intersection-observer.js"></script>
+<script src="index_files/libs/quarto-contrib/scrollama-3.2.0/scrollama.min.js"></script>
+<script src="index_files/libs/quarto-contrib/closeread-0.1.0/closeread.js"></script>
+<link href="index_files/libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="index_files/libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script src="index_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script src="index_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link href="index_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<meta cr-debug-mode="false">
+<meta cr-remove-header-space="false">
+
+
+<link rel="stylesheet" href="_extensions/qmd-lab/closeread/closeread.css">
+<link rel="stylesheet" href="cc.css">
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
+
+<main class="content page-columns page-full column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Childhood cultural capital and adult wealth</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Eva Six <a href="https://orcid.org/0000-0002-6858-9232" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+             <p>Matthias Schnetzer <a href="https://orcid.org/0000-0002-1463-1271" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+          </div>
+  </div>
+    
+  
+    
+    <div>
+    <div class="quarto-title-meta-heading">Doi</div>
+    <div class="quarto-title-meta-contents">
+      <p class="doi">
+        <a href="https://doi.org/10.1007/s11150-024-09733-6">10.1007/s11150-024-09733-6</a>
+      </p>
+    </div>
+  </div>
+  </div>
+  
+
+
+</header>
+
+
+<section id="section" class="level1 page-columns page-full">
+<h1 class="page-columns page-full"></h1>
+<section id="what-is-this-paper-all-about" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-this-paper-all-about">What is this paper all about?</h2>
+<p>Does exposure to cultural capital in childhood — in other words, having access to and familiarity with norms of highbrow culture — affect wealth accumulation later in life? We use data from the Household Finance and Consumption Survey (HFCS) to examine the relationship between various forms of cultural capital and wealth holdings in Austria. According to structural equation models, three indicators of cultural family background — the father’s educational attainment, the number of books in the parental household, and regular attendance of cultural activities at the age of ten — are positively correlated with net wealth. While education and income are key channels through which cultural capital affects wealth, we also observe direct effects in several specifications. The results are more marked within the over-50 cohort, suggesting that cultural capital’s role in wealth accumulation might have attenuated over decades of social change and educational expansion.</p>
+</section>
+<section id="what-is-cultural-capital" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="what-is-cultural-capital">What is cultural capital?</h2>
+<p><a href="https://en.wikipedia.org/wiki/Pierre_Bourdieu">Pierre Bourdieu</a>’s capital theory provides a valuable framework to better understand the role of family background in social status acquisition. Families are equipped with various sorts of capital that have the potential for reproduction and intergenerational transmission: economic, social, and cultural capital. Cultural capital is broadly defined as the accumulation of knowledge, behaviors, and skills that can be institutionalized, for instance, in educational attainment.</p>
+<p><br>
+</p>
+<div class="column-screen" style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/c/c0/Pierre_Bourdieu_%281%29.jpg); background-size: cover; height: 40vh; background-position: center -80%;">
+
+</div>
+<figcaption>
+Pierre Bourdieu, 1996. Source: <a href="https://en.wikipedia.org/wiki/Pierre_Bourdieu">Wikipedia</a>
+</figcaption>
+<p><br>
+</p>
+<p>Bourdieu argues that cultural capital can exist in three forms: the embodied, objectidied, and institutionalized state. The <strong>embodied</strong> state comprises lasting incorporated dispositions of the mind and body, which closely relates to the notion of the habitus. This involves a lifelong process of socialization that usually starts in early childhood and mostly takes place unconsciously. Cultural capital in the <strong>objectified</strong> state refers to the possession of goods with both material and symbolic value, such as artworks, books, and musical instruments. The <strong>institutionalized</strong> state is the formal recognition of cultural capital, such as educational attainment or academic credentials.</p>
+<p>We are interested in the question whether childhood cultural capital affects net wealth later in life. Cultural capital might affect many components of wealth accumulation, such as income, consumption or rates of return on investment. In our paper, we discuss these channels in detail and set up a simple theoretical model for the empirical analysis. The path diagram below shows the potential relationships between family background and net wealth that we test with structural equation modeling (SEM). This way, we are able to distinguish between direct channels from cultural capital to wealth, and indirect channels that operate via education and income. The direct effect includes all variables such as financial literacy, savings preferences, soft skills, and risk aversion, that might be associated with cultural capital but not captured by education and income.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+
+A[Family Background]:::main --- B(Economic capital):::capital
+B ----&gt; W[Wealth]:::main
+A --- C(Cultural capital):::capital 
+C --&gt; E(Education):::indirect
+E -.-&gt; I(Income):::indirect
+C --&gt; I
+E --&gt; W
+I --&gt; W
+C ----&gt; W
+A -.- D(Social capital):::capital
+D -...-&gt; W
+classDef main fill:firebrick,stroke:black,color:black,font-family:'Roboto Slab',font-size:16,fill-opacity:20%
+classDef capital fill:goldenrod,stroke:black,color:black,font-family:'Roboto Slab',font-size:16,fill-opacity:20%
+classDef indirect fill:white,stroke:black,color:black,font-style:italic,font-family:'Roboto',font-size:14
+linkStyle default stroke:black,stroke-width:2px
+linkStyle 9,10 stroke:grey,stroke-width:1px
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>We use data from the 2014 wave of the <a href="https://hfcs.at">Household Finance and Consumption Survey (HFCS)</a> for Austria. The survey collects individual and household data on income, wealth, and various socio-economic characteristics, as well as a special module with information on the family background when the respondent was ten years of age. This data allows us to observe different forms of cultural capital:</p>
+<div class="iconlist">
+<ul>
+<li><i class="fa-solid fa-masks-theater fa-1x"></i> The <strong>regular attendance of cultural activities</strong> by an individual’s family (e.g., theater, museum) serves as an indicator of embodied cultural capital.</li>
+<li><i class="fa-solid fa-book fa-1x"></i> The estimated <strong>number of books at home</strong> has been used in the literature as a proxy for objectified cultural capital.</li>
+<li><i class="fa-solid fa-user-graduate fa-1x"></i> The <strong>father’s educational attainment</strong> is a proxy for institutionalized parental cultural capital.</li>
+</ul>
+</div>
+</section>
+<section id="what-are-the-main-results-of-the-paper" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="what-are-the-main-results-of-the-paper">What are the main results of the paper?</h2>
+<p>The link between childhood cultural capital and wealth in adulthood is visible at first glance. The figure shows the distribution of net wealth with respect to the three cultural capital indicators for the sample of all individuals aged 35 to 70 years. The three indicators for cultural capital are binary variables indicating upper-secondary or tertiary education of the father, availability of more than 100 books in the parental household, and regular attendance of cultural activities at age ten.</p>
+<div class="cr-section column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-desc">
+<div class="narrative">
+<p>Median wealth of individuals whose father has a higher secondary or tertiary degree is €75,400 higher than median wealth of individuals whose father has lower education (see top panel).</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-desc">
+<div class="narrative">
+<p>The median net wealth of individuals with access to more than 100 books at the age of ten (€97,200) is also significantly higher than in the counterfactual group (€63,300). The difference amounts to €33,900 (see middle panel).</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-desc">
+<div class="narrative">
+<p>The gap in median net wealth between individuals with respect to the regular attendence of cultural activities in childhood adds up to €63,000 (see bottom panel).</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-desc" class="sticky">
+<p><img src="index_files/figure-html/desc-1.svg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+<p>The table below presents the main findings of the mediation analysis based on estimations including a large set of control variables. We control for years of schooling, household income, age, gender, migration status, labor status, working hours, household composition, etc. Columns (1) to (3) show the results for the three manifestations of cultural capital, and column (4) presents a latent variable approach. Our results show highly significant indirect effects, suggesting cultural family background has long-lasting effects on net wealth via education and income.</p>
+<div class="tbl-classic tbl-smaller">
+<table class="caption-top table">
+<caption>Direct, indirect and total effects of mediation analysis</caption>
+<colgroup>
+<col style="width: 28%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">(1)<br>EF</th>
+<th style="text-align: center;">(2)<br>B</th>
+<th style="text-align: center;">(3)<br>CA</th>
+<th style="text-align: center;">(4)<br>EF, B, CA</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>indirect effect (IE)</td>
+<td style="text-align: center;"><strong>0.808</strong> (0.138)</td>
+<td style="text-align: center;"><strong>0.538</strong> (0.098)</td>
+<td style="text-align: center;"><strong>0.436</strong> (0.095)</td>
+<td style="text-align: center;"><strong>1.826</strong> (0.489)</td>
+</tr>
+<tr class="even">
+<td>direct effect (DE)</td>
+<td style="text-align: center;">−0.096 (0.352)</td>
+<td style="text-align: center;">0.251 (0.273)</td>
+<td style="text-align: center;"><em>0.583</em> (0.252)</td>
+<td style="text-align: center;">0.854 (0.883)</td>
+</tr>
+<tr class="odd">
+<td>total effect (TE)</td>
+<td style="text-align: center;"><em>0.712</em> (0.341)</td>
+<td style="text-align: center;"><strong>0.789</strong> (0.281)</td>
+<td style="text-align: center;"><strong>1.018</strong> (0.243)</td>
+<td style="text-align: center;"><strong>2.680</strong> (0.688)</td>
+</tr>
+<tr class="even">
+<td>IE/TE</td>
+<td style="text-align: center;"><em>1.135</em> (0.554)</td>
+<td style="text-align: center;"><strong>0.682</strong> (0.243)</td>
+<td style="text-align: center;"><strong>0.428</strong> (0.131)</td>
+<td style="text-align: center;"><em>0.681</em> (0.265)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tbl-note">
+<p>Standard errors in parentheses. p &lt; 0.05 in italics and p &lt; 0.01 in bold.<br>EF = high education of father, B = &gt;100 books, CA = attended cultural activities.</p>
+</div>
+<p><br>
+</p>
+<p>Models (1) to (3) show highly significant total effects, indicating an approximate average net wealth increase between 70% and 100% for individuals who experienced different manifestations of cultural capital at a young age. The latent variable approach - considering all three indicators at once - leads to even more substantial effects (270%). In contrast, the direct effect is rarely statistically significant, thus signaling full mediation. This indicates that a high number of books at age ten and a father’s high educational attainment primarily influence net wealth via education and income.</p>
+<div class="cr-section column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-age">
+<div class="narrative">
+<p>We further distinguish between a younger and older sample with a threshold of 50 years of age. This figure shows the descriptive results for the attendence of cultural activities in childhood.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-age">
+<div class="narrative">
+<p>We find differences between the age groups also in the multivariate analysis. The results suggest distinct cohort effects with particularly strong effects for the older age group and a less pronounced and only partially significant nexus for younger individuals.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-age">
+<div class="narrative">
+<p>The role of cultural capital may thus have altered during the course of social change, for instance, due to educational expansion and technological change that may have facilitated access to cultural capital and reduced intergenerational persistence.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-age" class="sticky">
+<p><img src="index_files/figure-html/age-1.svg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+<p>In our paper, we check robustness of the results with various specifications. First, we use alternative (binary) indicators for the institutionalized state, for instance, the education of the mother. Then, we adjust the threshold for the objectified cultural capital from having over 100 books to over 50 books and over 200 books. We also use gross rather than net wealth and different age thresholds for splitting the younger and older cohort. Overall, the various robustness checks do not alter the results in any unexpected way. We are thus confident that the main findings are robust.</p>
+</section>
+<section id="what-are-the-policy-conclusions-from-this-paper" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-the-policy-conclusions-from-this-paper">What are the policy conclusions from this paper?</h2>
+<p>This paper studies the effects of childhood cultural capital on private wealth in Austria. We find a positive link between individual net wealth and indicators for institutionalized, objectified, and embodied states of cultural capital. The findings suggest that the total effect mainly result from indirect effects via education and income. However, we also find positive direct effects for some specifications, such as the attendance of cultural activities in childhood. Differences between an older and younger cohort suggest that cultural capital’s role in wealth accumulation might have attenuated over decades of social change and educational expansion.</p>
+<p>The paper highlights that family background has important repercussions for wealth accumulation later in life. Policy responses in order to increase social mobility range from ex-ante measures to ensure equal access to cultural capital for all children to ex-post policies focused on reducing existing wealth inequalities. Large international organizations, <a href="http://dx.doi.org/10.1787/9789264301085-en">such as the OECD</a> and the World Bank, have identified early investments in childcare, preventing adolescents from dropping out of school, and promoting inclusive housing policies to be among the most effective measures to level the playing field. Affordable access to and broad public provision of (objectified) cultural capital, like libraries, museums, and theaters are viable measures against the private concentration of cultural capital.</p>
+</section>
+</section>
+<section id="info" class="level1">
+<h1></h1>
+<p>This document was created with <a href="https://quarto.org">Quarto</a>, <a href="https://closeread.netlify.app">closeread</a> and <a href="https://www.r-project.org">R</a>.</p>
+<p><br>
+</p>
+<p>The webpage is based on an article written by Eva Six and Matthias Schnetzer<br>that has been published in <a href="https://doi.org/10.1007/s11150-024-09733-6">Review of Economics of the Household</a>.</p>
+<p><br>
+</p>
+<p><i class="fa-solid fa-envelope" aria-label="envelope"></i> <a href="mailto:matthias.schnetzer%20(at)%20akwien.at">matthias.schnetzer@akwien.at</a>   <i class="fa-solid fa-globe" aria-label="globe"></i> <a href="https://mschnetzer.github.io/de/">mschnetzer.github.io</a>   <i class="fa-brands fa-twitter" aria-label="twitter"></i> <a href="https://x.com/matschnetzer"><span class="citation" data-cites="matschnetzer">@matschnetzer</span></a></p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

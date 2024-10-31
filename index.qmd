@@ -1,0 +1,267 @@
+---
+title: "Childhood cultural capital and adult wealth"
+author: 
+  - name: Eva Six
+    orcid: 0000-0002-6858-9232
+  - name: Matthias Schnetzer
+    orcid: 0000-0002-1463-1271
+doi: 10.1007/s11150-024-09733-6
+title-block-style: default
+lang: en
+format: 
+  closeread-html:
+    css: cc.css
+    code-tools: false
+    fig-format: svg
+    toc: false
+    linkcolor: tomato
+---
+
+# {.page-columns .page-full}
+
+## What is this paper all about?
+
+Does exposure to cultural capital in childhood --- in other words, having access to and familiarity with norms of highbrow culture --- affect wealth accumulation later in life? We use data from the Household Finance and Consumption Survey (HFCS) to examine the relationship between various forms of cultural capital and wealth holdings in Austria. According to structural equation models, three indicators of cultural family background --- the father’s educational attainment, the number of books in the parental household, and regular attendance of cultural activities at the age of ten --- are positively correlated with net wealth. While education and income are key channels through which cultural capital affects wealth, we also observe direct effects in several specifications. The results are more marked within the over-50 cohort, suggesting that cultural capital’s role in wealth accumulation might have attenuated over decades of social change and educational expansion.
+
+## What is cultural capital?
+
+[Pierre Bourdieu](https://en.wikipedia.org/wiki/Pierre_Bourdieu)’s capital theory provides a valuable framework to better understand the role of family background in social status acquisition. Families are equipped with various sorts of capital that have the potential for reproduction and intergenerational transmission: economic, social, and cultural capital. Cultural capital is broadly defined as the accumulation of knowledge, behaviors, and skills that can be institutionalized, for instance, in educational attainment.
+
+\
+
+::: {.column-screen style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/c/c0/Pierre_Bourdieu_%281%29.jpg); background-size: cover; height: 40vh; background-position: center -80%;"}
+:::
+<figcaption>Pierre Bourdieu, 1996. Source: [Wikipedia](https://en.wikipedia.org/wiki/Pierre_Bourdieu)</figcaption>
+
+\
+
+Bourdieu argues that cultural capital can exist in three forms: the embodied, objectidied, and institutionalized state. The **embodied** state comprises lasting incorporated dispositions of the mind and body, which closely relates to the notion of the habitus. This involves a lifelong process of socialization that usually starts in early childhood and mostly takes place unconsciously. Cultural capital in the **objectified** state refers to the possession of goods with both material and symbolic
+value, such as artworks, books, and musical instruments. The
+**institutionalized** state is the formal recognition of cultural capital, such as educational attainment or academic credentials.
+
+We are interested in the question whether childhood cultural capital affects net wealth later in life. Cultural capital might affect many components of wealth accumulation, such as income, consumption or rates of return on investment. In our paper, we discuss these channels in detail and set up a simple theoretical model for the empirical analysis. The path diagram below shows the potential relationships between family background and net wealth that we test with structural equation modeling (SEM). This way, we are able to distinguish between direct channels from cultural capital to wealth, and indirect channels that operate via education and income. The direct effect includes all variables such as financial literacy, savings preferences, soft skills, and risk aversion, that might be associated with cultural capital but not captured by education and income.
+
+```{mermaid}
+%%| fig-align: center
+flowchart TB
+
+A[Family Background]:::main --- B(Economic capital):::capital
+B ----> W[Wealth]:::main
+A --- C(Cultural capital):::capital 
+C --> E(Education):::indirect
+E -.-> I(Income):::indirect
+C --> I
+E --> W
+I --> W
+C ----> W
+A -.- D(Social capital):::capital
+D -...-> W
+classDef main fill:firebrick,stroke:black,color:black,font-family:'Roboto Slab',font-size:16,fill-opacity:20%
+classDef capital fill:goldenrod,stroke:black,color:black,font-family:'Roboto Slab',font-size:16,fill-opacity:20%
+classDef indirect fill:white,stroke:black,color:black,font-style:italic,font-family:'Roboto',font-size:14
+linkStyle default stroke:black,stroke-width:2px
+linkStyle 9,10 stroke:grey,stroke-width:1px
+```
+
+\ 
+
+We use data from the 2014 wave of the [Household Finance and Consumption Survey (HFCS)](https://hfcs.at) for Austria. The survey collects individual and household data on income, wealth, and various socio-economic characteristics, as well as a special module with information on the family background when the respondent was ten years of age. This data allows us to observe different forms of cultural capital:
+
+:::{.iconlist}
+- <i class="fa-solid fa-masks-theater fa-1x"></i> The **regular attendance of cultural activities** by an individual’s family (e.g., theater, museum) serves as an indicator of embodied cultural capital. 
+- <i class="fa-solid fa-book fa-1x"></i> The estimated **number of books at home** has been used in the literature as a proxy for objectified cultural capital. 
+- <i class="fa-solid fa-user-graduate fa-1x"></i> The **father’s educational attainment** is a proxy for institutionalized parental cultural capital. 
+:::
+
+## What are the main results of the paper?
+
+The link between childhood cultural capital and wealth in adulthood is visible at first glance. The figure shows the distribution of net wealth with respect to the three cultural capital indicators for the sample of all individuals aged 35 to 70 years. The three indicators for cultural capital are binary variables indicating upper-secondary or tertiary education of the father, availability of more than 100 books in the parental household, and regular attendance of cultural activities at age ten.
+
+```{r packages}
+#| echo: false
+#| warning: false
+#| message: false
+library(tidyverse)
+library(scales)
+library(labelled)
+library(ggdist)
+```
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{#cr-desc}
+```{r desc}
+#| output: 'asis'
+#| fig-asp: 1.2
+#| warning: false
+load("data/sub_allvar.Rda")
+
+subdf <- sub_d |> 
+  select(id.hh, id.p, hw, id.imp, age, d.educ_father_highersecond, 
+         d.gfather_highskilled, d.fambg10_culture=fambg10_culture, d.books3, i.netwealth, ihs_i.netwealth) |> 
+  mutate(across(starts_with("d."), ~. + 1)) |> 
+  drop_na() |> remove_labels()
+
+d1 <- subdf |> 
+  summarise(P50 = median(i.netwealth),
+            P25 = quantile(i.netwealth, probs = .25),
+            P75 = quantile(i.netwealth, probs = .75), 
+            .by = d.educ_father_highersecond)
+
+d2 <- subdf |> 
+  summarise(P50 = median(i.netwealth),
+            P25 = quantile(i.netwealth, probs = .25),
+            P75 = quantile(i.netwealth, probs = .75), 
+            .by = d.books3)
+
+
+d3 <- subdf |> 
+  summarise(P50 = median(i.netwealth),
+            P25 = quantile(i.netwealth, probs = .25),
+            P75 = quantile(i.netwealth, probs = .75), 
+            .by = d.fambg10_culture)
+
+scrolldat <- bind_rows(d1, d2, d3) |> 
+  pivot_longer(cols = starts_with("d."), names_to = "variable", values_to = "indic") |> drop_na() |> 
+  pivot_longer(P50:P75, names_to = "measure") |> 
+  mutate(variable = case_match(variable,
+                               "d.educ_father_highersecond" ~ "High education of father",
+                               "d.books3" ~ "More than 100 books",
+                               "d.fambg10_culture" ~ "Attended cultural activities"),
+         variable = fct_inorder(variable))
+
+scrolldat |> 
+  ggplot(aes(x = value, y = indic, color = factor(indic))) +
+  geom_line(linewidth = 1.5) + 
+  geom_point(aes(shape = measure), size = 3.5, fill = "white") +
+  geom_text(aes(y = indic - .2, label = measure),
+            color = "black", size = 4.5, family = "Barlow Condensed") +
+  geom_text(aes(y = indic + 0.2, 
+                label = dollar(round(value, -2), prefix = "€", big.mark = " ")),
+            color = "black", size = 5, 
+            family = "Barlow Condensed", 
+            data = scrolldat |> filter(measure == "P50")) +
+  facet_wrap(~variable, ncol = 1, strip.position = "left") +
+  labs(x="Net wealth (in €)", y=NULL, 
+  caption = "Data: HFCS 2014") +
+  scale_shape_manual(values = c("P50" = 17, "P25" = 21, "P75" = 21)) +
+  scale_y_continuous(limits = c(0.6, 2.4),
+                     breaks = 2:1, labels = c("YES","NO"), expand = c(0,0)) +
+  scale_x_continuous(labels = label_number(big.mark = " ")) +
+  scale_color_manual(values = c("royalblue4", "coral4")) +
+  coord_cartesian(xlim = c(0, NA)) +
+  theme_minimal(base_family = "Barlow Condensed", base_size=22) +
+  theme(legend.position = "none",
+        plot.caption = element_text(size = 14),
+        panel.grid.minor = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.major = element_line(linewidth = 0.15, color = "gray90"),
+        panel.spacing.y = unit(1, "cm"),
+        strip.placement = "outside",
+        strip.text = element_text(size = 16, hjust = .5,
+                                  margin = margin(r = 5, unit = "pt")),
+        axis.text.x = element_text(size = 14, color = "black"),
+        axis.text.y = element_text(size = 14, color = "black"),
+        axis.title.x = element_text(size = 16, margin = margin(t = 1, b = 0, unit = "lines")))
+```
+
+:::
+
+Median wealth of individuals whose father has a higher secondary or tertiary degree is €75,400 higher than median wealth of individuals whose father has lower education (see top panel). @cr-desc
+
+The median net wealth of individuals with access to more than 100 books at the age of ten (€97,200) is also significantly higher than in the counterfactual group (€63,300). The difference amounts to €33,900 (see middle panel).  @cr-desc
+
+The gap in median net wealth between individuals with respect to the regular attendence of cultural activities in childhood adds up to €63,000 (see bottom panel). @cr-desc
+
+:::
+
+The table below presents the main findings of the mediation analysis based on estimations including a large set of control variables. We control for years of schooling, household income, age, gender, migration status, labor status, working hours, household composition, etc. Columns (1) to (3) show the results for the three manifestations of cultural capital, and column (4) presents a latent variable approach. Our results show highly significant indirect effects, suggesting cultural family background has long-lasting effects on net wealth via education and income.
+
+:::{.tbl-classic .tbl-smaller}
+|   | (1)<br>EF | (2)<br>B | (3)<br>CA | (4)<br>EF, B, CA |
+|---|:------:|:-----:|:------:|:------------:|
+| indirect effect (IE) | **0.808** (0.138) | **0.538** (0.098) | **0.436** (0.095) | **1.826** (0.489) |
+| direct effect (DE) | −0.096 (0.352) | 0.251 (0.273) | *0.583* (0.252) | 0.854 (0.883) |
+| total effect (TE) | *0.712* (0.341) | **0.789** (0.281) | **1.018** (0.243) | **2.680** (0.688) |
+| IE/TE | *1.135* (0.554) | **0.682** (0.243) | **0.428** (0.131) | *0.681* (0.265) |
+: Direct, indirect and total effects of mediation analysis {tbl-colwidths="[28,18,18,18,18]"}
+:::
+
+:::{.tbl-note}
+Standard errors in parentheses. p < 0.05 in italics and p < 0.01 in bold.<br>EF = high education of father, B = >100 books, CA = attended cultural activities.
+:::
+
+\
+
+Models (1) to (3) show highly significant total effects, indicating an approximate average net wealth increase between 70% and 100% for individuals who experienced different manifestations of cultural capital at a young age. The latent variable approach - considering all three indicators at once - leads to even
+more substantial effects (270%). In contrast, the direct effect is rarely statistically significant, thus
+signaling full mediation. This indicates that a high number of books at age ten and a father’s high educational attainment primarily influence net wealth via education and income.
+
+:::{.cr-section layout="sidebar-left"}
+
+:::{#cr-age}
+```{r age}
+#| output: 'asis'
+#| fig-asp: 1.1
+#| warning: false
+densdf <- bind_rows(subdf |> mutate(sample = "Full sample"),
+                    subdf |> mutate(sample = ifelse(age <= 50, "Age 35 to 50", "Age 51 to 70"))) |> 
+        mutate(sample = fct_inorder(sample),
+        d.fambg10_culture = ifelse(d.fambg10_culture == 2, "Yes", "No"),
+        d.fambg10_culture = fct_inorder(d.fambg10_culture)) |> 
+  select(i.netwealth, d.fambg10_culture, sample, ihs_i.netwealth) 
+
+densdf |> 
+  ggplot(aes(x = ihs_i.netwealth, color = d.fambg10_culture, fill = d.fambg10_culture)) +
+  geom_density() + 
+  facet_grid(sample~d.fambg10_culture, switch = "y") +
+  geom_text(data = densdf |> 
+            summarise(mm = median(ihs_i.netwealth), medw = median(i.netwealth), .by = c(d.fambg10_culture, sample)),
+            aes(x = mm, y = 0.02, vjust = 0, label = scales::dollar(round(medw,-2), prefix = "€", big.mark = " ")),
+            inherit.aes = F, fontface = "bold", color = "white", size = 4.5, family = "Barlow Condensed") +
+  geom_segment(aes(y = 0, yend = 0.015, x = mm, xend = mm), color = "white", linewidth = 1.5,
+               data = densdf |> summarise(mm = median(ihs_i.netwealth), .by = c(d.fambg10_culture, sample)))  + 
+  scale_fill_manual(values = c("No" = "royalblue4", "Yes" = "coral4"), 
+                    aesthetics = c("color","fill")) +
+  scale_x_continuous(sec.axis = sec_axis(~., name = "Attended cultural activities"))+
+  labs(x="Net wealth (IHS transformed)", y=NULL,
+       caption = "Data: HFCS 2014") +
+  coord_cartesian(xlim = c(0, NA)) +
+  theme_minimal(base_size = 22, base_family = "Barlow Condensed") +
+  theme(legend.position = "none",
+        panel.grid = element_blank(),
+        plot.caption = element_text(size = 14),
+        strip.text.x = element_text(size = 16, hjust = 0.5, margin = margin(b = 5, unit = "pt")),
+        strip.text.y = element_text(size = 16, hjust = 0.5, margin = margin(r = 5, unit = "pt")),
+        axis.text = element_blank(),
+        axis.title = element_text(size = 16))
+```
+
+:::
+
+We further distinguish between a younger and older sample with a threshold of 50 years of age. This figure shows the descriptive results for the attendence of cultural activities in childhood. @cr-age
+
+We find differences between the age groups also in the multivariate analysis. The results suggest distinct cohort effects with particularly strong effects for the older age group and a less pronounced and only partially significant nexus for younger individuals. @cr-age
+
+The role of cultural capital may thus have altered during the course of social change, for instance, due to educational expansion and technological change that may have facilitated access to cultural capital and reduced intergenerational persistence. @cr-age
+
+:::
+
+In our paper, we check robustness of the results with various specifications. First, we use alternative (binary) indicators for the institutionalized state, for instance, the education of the mother. Then, we adjust the threshold for the objectified cultural capital from having over 100 books to over 50 books and over 200 books. We also use gross rather than net wealth and different age thresholds for splitting the younger and older cohort. Overall, the various robustness checks do not alter the results in any unexpected way. We are thus confident that the main findings are robust.
+
+## What are the policy conclusions from this paper?
+
+This paper studies the effects of childhood cultural capital on private wealth in Austria. We find a positive link between individual net wealth and indicators for institutionalized, objectified, and embodied states of cultural capital. The findings suggest that the total effect mainly result from indirect effects via education and income. However, we also find positive direct effects for some specifications, such as the attendance of cultural activities in childhood. Differences between an older and younger cohort suggest that cultural capital’s role in wealth accumulation might have attenuated over decades of social change and educational expansion.
+
+The paper highlights that family background has important repercussions for wealth accumulation later in life. Policy responses in order to increase social mobility range from ex-ante measures to ensure equal access to cultural capital for all children to ex-post policies focused on reducing existing wealth inequalities. Large international organizations, [such as the OECD](http://dx.doi.org/10.1787/9789264301085-en) and the World Bank, have identified early investments in childcare, preventing adolescents from dropping out of school, and promoting inclusive housing policies to be among the most effective measures to level the playing field. Affordable access to and broad public provision of (objectified) cultural capital, like libraries, museums, and theaters are viable measures against the private concentration of cultural capital.
+
+# {#info} 
+This document was created with [Quarto](https://quarto.org), [closeread](https://closeread.netlify.app) and [R](https://www.r-project.org). 
+
+\
+
+The webpage is based on an article written by Eva Six and Matthias Schnetzer<br>that has been published in [Review of Economics of the Household](https://doi.org/10.1007/s11150-024-09733-6).
+
+\
+
+{{< fa envelope >}} [matthias.schnetzer@akwien.at](mailto:matthias.schnetzer (at) akwien.at) &emsp; {{< fa globe >}} [mschnetzer.github.io](https://mschnetzer.github.io/de/) &emsp; {{< fa brands twitter >}} [@matschnetzer](https://x.com/matschnetzer)
