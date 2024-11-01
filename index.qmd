@@ -29,7 +29,7 @@ Does exposure to cultural capital in childhood --- in other words, having access
 
 \
 
-::: {.column-screen style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/c/c0/Pierre_Bourdieu_%281%29.jpg); background-size: cover; height: 40vh; background-position: center -80%;"}
+::: {.column-screen .snippet style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/c/c0/Pierre_Bourdieu_%281%29.jpg); background-size: 100vw; height: 200px; background-position: center +40%; background-repeat: no-repeat;"}
 :::
 <figcaption>Pierre Bourdieu, 1996. Source: [Wikipedia](https://en.wikipedia.org/wiki/Pierre_Bourdieu)</figcaption>
 
@@ -184,7 +184,7 @@ The table below presents the main findings of the mediation analysis based on es
 | direct effect (DE) | −0.096 (0.352) | 0.251 (0.273) | *0.583* (0.252) | 0.854 (0.883) |
 | total effect (TE) | *0.712* (0.341) | **0.789** (0.281) | **1.018** (0.243) | **2.680** (0.688) |
 | IE/TE | *1.135* (0.554) | **0.682** (0.243) | **0.428** (0.131) | *0.681* (0.265) |
-: Direct, indirect and total effects of mediation analysis {tbl-colwidths="[28,18,18,18,18]"}
+: Direct, indirect and total effects of mediation analysis for net wealth {tbl-colwidths="[28,18,18,18,18]"}
 :::
 
 :::{.tbl-note}
@@ -253,14 +253,16 @@ In our paper, we check robustness of the results with various specifications. Fi
 
 This paper studies the effects of childhood cultural capital on private wealth in Austria. We find a positive link between individual net wealth and indicators for institutionalized, objectified, and embodied states of cultural capital. The findings suggest that the total effect mainly result from indirect effects via education and income. However, we also find positive direct effects for some specifications, such as the attendance of cultural activities in childhood. Differences between an older and younger cohort suggest that cultural capital’s role in wealth accumulation might have attenuated over decades of social change and educational expansion.
 
-The paper highlights that family background has important repercussions for wealth accumulation later in life. Policy responses in order to increase social mobility range from ex-ante measures to ensure equal access to cultural capital for all children to ex-post policies focused on reducing existing wealth inequalities. Large international organizations, [such as the OECD](http://dx.doi.org/10.1787/9789264301085-en) and the World Bank, have identified early investments in childcare, preventing adolescents from dropping out of school, and promoting inclusive housing policies to be among the most effective measures to level the playing field. Affordable access to and broad public provision of (objectified) cultural capital, like libraries, museums, and theaters are viable measures against the private concentration of cultural capital.
+The paper highlights that family background has important repercussions for wealth accumulation later in life. Policy responses in order to increase social mobility range from ex-ante measures to ensure equal access to cultural capital for all children to ex-post policies focused on reducing existing wealth inequalities. Large international organizations, such as the [OECD](http://dx.doi.org/10.1787/9789264301085-en) and the World Bank, have identified early investments in childcare, preventing adolescents from dropping out of school, and promoting inclusive housing policies to be among the most effective measures to level the playing field. Affordable access to and broad public provision of (objectified) cultural capital, like libraries, museums, and theaters are viable measures against the private concentration of cultural capital.
+
+\
 
 # {#info} 
 This document was created with [Quarto](https://quarto.org), [closeread](https://closeread.netlify.app) and [R](https://www.r-project.org). 
 
 \
 
-The webpage is based on an article written by Eva Six and Matthias Schnetzer<br>that has been published in [Review of Economics of the Household](https://doi.org/10.1007/s11150-024-09733-6).
+The webpage is based on an article written by Eva Six and Matthias Schnetzer that has been published in [Review of Economics of the Household](https://doi.org/10.1007/s11150-024-09733-6).
 
 \
 
