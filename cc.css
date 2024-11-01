@@ -1,11 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@200..700&family=Roboto+Slab:wght@100..900&display=swap");
 
-body, section {
+body, section, header {
   background-color: white !important;
-}
-
-:root {
-  --mermaid-edge-color: black;
 }
 
 #quarto-document-content {
@@ -29,7 +25,7 @@ body, section {
 }
 
 /* mobile sizing (bootstrap: xs) is always overlay-center */
-@media (max-width: 575.98px) {
+@media (max-width: 550px) {
   .cr-section.sidebar-left .narrative-col,
   .cr-section.sidebar-right .narrative-col,
   .cr-section.overlay-left .narrative-col,
@@ -42,9 +38,17 @@ body, section {
   .cr-section.overlay-left .narrative-col .narrative > *,
   .cr-section.overlay-right .narrative-col .narrative > *,
   .cr-section.overlay-center .narrative-col .narrative > * {
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 5px;
-    border-radius: 5px;
+    color: black;
+    font-family: "Barlow Condensed";
+    font-weight: 200;
+    font-size: 0.9rem;
+    text-align: center;
+    min-width: 50svw;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -112,6 +116,12 @@ body, section {
   border-bottom: 5px solid #000 !important;
 }
 
+@media (max-width: 550px) {
+  .tbl-smaller th, td, tr, tbody {
+    font-size: 0.5rem !important;
+  }
+}
+
 .tbl-smaller th, td, tr, tbody {
   font-size: 1rem !important;
 }
@@ -125,4 +135,8 @@ body, section {
   list-style: none;
   text-indent: -1.4rem;
   padding-left: 5rem;
+}
+
+:root {
+  --mermaid-edge-color: black;
 }
