@@ -24,34 +24,6 @@ body, section, header {
   padding-right: 30px;
 }
 
-/* mobile sizing (bootstrap: xs) is always overlay-center */
-@media (max-width: 576px) {
-  .cr-section.sidebar-left .narrative-col,
-  .cr-section.sidebar-right .narrative-col,
-  .cr-section.overlay-left .narrative-col,
-  .cr-section.overlay-right .narrative-col,
-  .cr-section.overlay-center .narrative-col {
-    background-color: transparent;
-  }
-  .cr-section.sidebar-left .narrative-col .narrative > *,
-  .cr-section.sidebar-right .narrative-col .narrative > *,
-  .cr-section.overlay-left .narrative-col .narrative > *,
-  .cr-section.overlay-right .narrative-col .narrative > *,
-  .cr-section.overlay-center .narrative-col .narrative > * {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 5px;
-    color: black;
-    font-family: "Barlow Condensed";
-    font-weight: 200;
-    font-size: 1rem;
-    text-align: center;
-    min-width: 50svw;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
 .cr-section.sidebar-left .sticky-col {
   padding-left: 30px;
   padding-right: 30px;
@@ -107,14 +79,6 @@ body, section, header {
   transform: translate(-50%, -50%);
 }
 
-@media (max-width: 576px) {
-  #info p {
-    font-size: 0.8rem;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
-
 .tbl-classic th {
   border-top: 5px solid #000 !important;
 }
@@ -122,12 +86,6 @@ body, section, header {
 .tbl-classic tbody {
   border-top: 2px solid #000 !important;
   border-bottom: 5px solid #000 !important;
-}
-
-@media (max-width: 576px) {
-  .tbl-smaller th, td, tr, tbody {
-    font-size: 0.5rem !important;
-  }
 }
 
 .tbl-smaller th, td, tr, tbody {
@@ -147,4 +105,46 @@ body, section, header {
 
 :root {
   --mermaid-edge-color: black;
+}
+
+/* mobile sizing (bootstrap: xs) is always overlay-center */
+@media (max-width: 576px) {
+  .cr-section.sidebar-left .narrative-col,
+  .cr-section.sidebar-right .narrative-col,
+  .cr-section.overlay-left .narrative-col,
+  .cr-section.overlay-right .narrative-col,
+  .cr-section.overlay-center .narrative-col {
+    background-color: transparent;
+  }
+
+  .cr-section.sidebar-left .narrative-col .narrative > *,
+  .cr-section.sidebar-right .narrative-col .narrative > *,
+  .cr-section.overlay-left .narrative-col .narrative > *,
+  .cr-section.overlay-right .narrative-col .narrative > *,
+  .cr-section.overlay-center .narrative-col .narrative > * {
+    background-color: rgba(255, 255, 255, .9);
+    padding: 5px;
+    color: black;
+    font-family: "Barlow Condensed";
+    font-weight: 200;
+    font-size: 1rem;
+    text-align: center;
+    min-width: 50svw;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #info p {
+    font-size: 0.8rem;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .tbl-smaller th, td, tr, tbody {
+    font-size: 0.7rem !important;
+  }
+
+  .tbl-note {
+    font-size: 0.7rem;
+  }
 }
