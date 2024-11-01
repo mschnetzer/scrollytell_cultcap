@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@200..700&family=Roboto+Slab:wght@100..900&display=swap");
 
+:root {
+  --mermaid-edge-color: black;
+}
+
 body, section, header {
   background-color: white !important;
 }
@@ -7,8 +11,8 @@ body, section, header {
 #quarto-document-content {
   font-family: "Roboto Slab", Georgia, "Times New Roman", Times, serif;
   font-size: 15pt;
-  margin-bottom: 25vh;
-  padding-bottom: 25vh;
+  margin-bottom: 20vh;
+  padding-bottom: 10vh;
   z-index: 1;
 }
 
@@ -103,10 +107,6 @@ body, section, header {
   padding-left: 5rem;
 }
 
-:root {
-  --mermaid-edge-color: black;
-}
-
 /* mobile sizing (bootstrap: xs) is always overlay-center */
 @media (max-width: 576px) {
   .cr-section.sidebar-left .narrative-col,
@@ -114,6 +114,10 @@ body, section, header {
   .cr-section.overlay-left .narrative-col,
   .cr-section.overlay-right .narrative-col,
   .cr-section.overlay-center .narrative-col {
+    background-color: transparent;
+  }
+
+  .cr-section.overlay-center .narrative-col .narrative {
     background-color: transparent;
   }
 
@@ -135,11 +139,16 @@ body, section, header {
     transform: translate(-50%, -50%);
   }
 
+  .cr-section .narrative-col .trigger .narrative {
+    padding: 0em;
+  }
+
   #info p {
     font-size: 0.8rem;
     padding-left: 10px;
     padding-right: 10px;
   }
+  
   .tbl-smaller th, td, tr, tbody {
     font-size: 0.7rem !important;
   }
