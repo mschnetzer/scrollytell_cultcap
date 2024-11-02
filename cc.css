@@ -61,6 +61,10 @@ body, section, header {
   padding-block-start: 50svh;
 }
 
+.cr-section.overlay-center .narrative-col .trigger .narrative {
+  padding: 0em;
+}
+
 #info {
   background-color:linen !important;
   position: fixed;
@@ -114,10 +118,6 @@ body, section, header {
   .cr-section.overlay-left .narrative-col,
   .cr-section.overlay-right .narrative-col,
   .cr-section.overlay-center .narrative-col {
-    background-color: transparent;
-  }
-
-  .cr-section.overlay-center .narrative-col .narrative {
     background-color: transparent;
   }
 

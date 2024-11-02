@@ -29,7 +29,7 @@ Does exposure to cultural capital in childhood --- in other words, having access
 
 \
 
-::: {.column-screen .snippet style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/c/c0/Pierre_Bourdieu_%281%29.jpg); background-size: 100vw; height: 200px; background-position: center +40%; background-repeat: no-repeat;"}
+::: {.column-screen style="background-image:url(https://upload.wikimedia.org/wikipedia/commons/c/c0/Pierre_Bourdieu_%281%29.jpg); background-size: 100vw; height: 200px; background-position: center +40%; background-repeat: no-repeat;"}
 :::
 <figcaption>Pierre Bourdieu, 1996. Source: [Wikipedia](https://en.wikipedia.org/wiki/Pierre_Bourdieu)</figcaption>
 
@@ -167,6 +167,8 @@ scrolldat |>
 
 :::
 
+@cr-desc
+
 Median wealth of individuals whose father has a higher secondary or tertiary degree is €75,400 higher than median wealth of individuals whose father has lower education (see top panel). @cr-desc
 
 The median net wealth of individuals with access to more than 100 books at the age of ten (€97,200) is also significantly higher than in the counterfactual group (€63,300). The difference amounts to €33,900 (see middle panel).  @cr-desc
@@ -238,6 +240,8 @@ densdf |>
 ```
 
 :::
+
+@cr-age
 
 We further distinguish between a younger and older sample with a threshold of 50 years of age. This figure shows the descriptive results for the attendence of cultural activities in childhood. @cr-age
 
