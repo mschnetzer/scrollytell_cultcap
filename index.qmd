@@ -85,6 +85,7 @@ library(tidyverse)
 library(scales)
 library(labelled)
 library(ggdist)
+library(gghighlight)
 ```
 
 :::{.cr-section layout="sidebar-left"}
@@ -130,6 +131,7 @@ scrolldat <- bind_rows(d1, d2, d3) |>
                                "d.fambg10_culture" ~ "Attended cultural activities"),
          variable = fct_inorder(variable))
 
+fullplot <-
 scrolldat |> 
   ggplot(aes(x = value, y = indic, color = factor(indic))) +
   geom_line(linewidth = 1.5) + 
@@ -163,17 +165,57 @@ scrolldat |>
         axis.text.x = element_text(size = 14, color = "black"),
         axis.text.y = element_text(size = 14, color = "black"),
         axis.title.x = element_text(size = 16, margin = margin(t = 1, b = 0, unit = "lines")))
-```
 
+fullplot
+```
 :::
+
+:::{#cr-desc-1}
+```{r desc-1}
+#| output: 'asis'
+#| fig-asp: 1.2
+#| warning: false
+fullplot + 
+  geom_rect(aes(xmin=-Inf, xmax=Inf, ymin=-Inf, ymax=Inf), 
+  fill = "white", color=NA, alpha = 0.2, 
+  data = scrolldat  |> filter(!variable == "High education of father"))
+```
+:::
+
+:::{#cr-desc-2}
+```{r desc-2}
+#| output: 'asis'
+#| fig-asp: 1.2
+#| warning: false
+fullplot + 
+  geom_rect(aes(xmin=-Inf, xmax=Inf, ymin=-Inf, ymax=Inf), 
+  fill = "white", color=NA, alpha = 0.2, 
+  data = scrolldat  |> filter(!variable == "More than 100 books"))
+```
+:::
+
+:::{#cr-desc-3}
+```{r desc-3}
+#| output: 'asis'
+#| fig-asp: 1.2
+#| warning: false
+fullplot + 
+  geom_rect(aes(xmin=-Inf, xmax=Inf, ymin=-Inf, ymax=Inf), 
+  fill = "white", color=NA, alpha = 0.2, 
+  data = scrolldat  |> filter(!variable == "Attended cultural activities"))
+```
+:::
+
 
 @cr-desc
 
-Median wealth of individuals whose father has a higher secondary or tertiary degree is €75,400 higher than median wealth of individuals whose father has lower education (see top panel). @cr-desc
+Median wealth of individuals whose father has a higher secondary or tertiary degree is €75,400 higher than median wealth of individuals whose father has lower education. @cr-desc-1
 
-The median net wealth of individuals with access to more than 100 books at the age of ten (€97,200) is also significantly higher than in the counterfactual group (€63,300). The difference amounts to €33,900 (see middle panel).  @cr-desc
+The median net wealth of individuals with access to more than 100 books at the age of ten (€97,200) is also significantly higher than in the counterfactual group (€63,300). The difference amounts to €33,900.  @cr-desc-2
 
-The gap in median net wealth between individuals with respect to the regular attendence of cultural activities in childhood adds up to €63,000 (see bottom panel). @cr-desc
+The gap in median net wealth between individuals with respect to the regular attendence of cultural activities in childhood adds up to €63,000. @cr-desc-3
+
+@cr-desc
 
 :::
 
@@ -182,9 +224,9 @@ The table below presents the main findings of the mediation analysis based on es
 :::{.tbl-classic .tbl-smaller}
 |   | (1)<br>EF | (2)<br>B | (3)<br>CA | (4)<br>EF, B, CA |
 |---|:------:|:-----:|:------:|:------------:|
-| indirect effect (IE) | **0.808** (0.138) | **0.538** (0.098) | **0.436** (0.095) | **1.826** (0.489) |
-| direct effect (DE) | −0.096 (0.352) | 0.251 (0.273) | *0.583* (0.252) | 0.854 (0.883) |
-| total effect (TE) | *0.712* (0.341) | **0.789** (0.281) | **1.018** (0.243) | **2.680** (0.688) |
+| Indirect effect (IE) | **0.808** (0.138) | **0.538** (0.098) | **0.436** (0.095) | **1.826** (0.489) |
+| Direct effect (DE) | −0.096 (0.352) | 0.251 (0.273) | *0.583* (0.252) | 0.854 (0.883) |
+| Total effect (TE) | *0.712* (0.341) | **0.789** (0.281) | **1.018** (0.243) | **2.680** (0.688) |
 | IE/TE | *1.135* (0.554) | **0.682** (0.243) | **0.428** (0.131) | *0.681* (0.265) |
 : Direct, indirect and total effects of mediation analysis for net wealth {tbl-colwidths="[28,18,18,18,18]"}
 :::
@@ -195,9 +237,7 @@ Standard errors in parentheses. p < 0.05 in italics and p < 0.01 in bold.<br>EF 
 
 \
 
-Models (1) to (3) show highly significant total effects, indicating an approximate average net wealth increase between 70% and 100% for individuals who experienced different manifestations of cultural capital at a young age. The latent variable approach - considering all three indicators at once - leads to even
-more substantial effects (270%). In contrast, the direct effect is rarely statistically significant, thus
-signaling full mediation. This indicates that a high number of books at age ten and a father’s high educational attainment primarily influence net wealth via education and income.
+Models (1) to (3) show highly significant total effects, indicating an approximate average net wealth increase between 70% and 100% for individuals who experienced different manifestations of cultural capital at a young age. The latent variable approach - considering all three indicators at once - leads to even more substantial effects (270%). In contrast, the direct effect is rarely statistically significant, thus signaling full mediation. This indicates that a high number of books at age ten and a father’s high educational attainment primarily influence net wealth via education and income.
 
 :::{.cr-section layout="sidebar-left"}
 
@@ -206,26 +246,31 @@ signaling full mediation. This indicates that a high number of books at age ten 
 #| output: 'asis'
 #| fig-asp: 1.1
 #| warning: false
-densdf <- bind_rows(subdf |> mutate(sample = "Full sample"),
-                    subdf |> mutate(sample = ifelse(age <= 50, "Age 35 to 50", "Age 51 to 70"))) |> 
-        mutate(sample = fct_inorder(sample),
-        d.fambg10_culture = ifelse(d.fambg10_culture == 2, "Yes", "No"),
-        d.fambg10_culture = fct_inorder(d.fambg10_culture)) |> 
-  select(i.netwealth, d.fambg10_culture, sample, ihs_i.netwealth) 
 
-densdf |> 
-  ggplot(aes(x = ihs_i.netwealth, color = d.fambg10_culture, fill = d.fambg10_culture)) +
+densdf <- bind_rows(subdf |> mutate(sample = "Full sample"),
+                    subdf |> mutate(sample = ifelse(age <= 50, "Age 35 to 50", "Age 51 to 70"))) |>   
+        mutate(sample = fct_inorder(sample))  |> 
+        mutate(across(starts_with("d."), ~ifelse(. == 2, "Yes", "No"))) |>  
+  select(i.netwealth, starts_with("d."), sample, ihs_i.netwealth) 
+
+
+ageplot <- function(xvar, xtit){
+
+agedf <- densdf |> select(i.netwealth, ihs_i.netwealth, sample, variable = paste(xvar))
+
+agedf |> 
+  ggplot(aes(x = ihs_i.netwealth, color = variable, fill = variable)) +
   geom_density() + 
-  facet_grid(sample~d.fambg10_culture, switch = "y") +
-  geom_text(data = densdf |> 
-            summarise(mm = median(ihs_i.netwealth), medw = median(i.netwealth), .by = c(d.fambg10_culture, sample)),
+  facet_grid(sample~variable, switch = "y") +
+  geom_text(data = agedf |> 
+            summarise(mm = median(ihs_i.netwealth), medw = median(i.netwealth), .by = c(variable, sample)),
             aes(x = mm, y = 0.02, vjust = 0, label = scales::dollar(round(medw,-2), prefix = "€", big.mark = " ")),
             inherit.aes = F, fontface = "bold", color = "white", size = 4.5, family = "Barlow Condensed") +
   geom_segment(aes(y = 0, yend = 0.015, x = mm, xend = mm), color = "white", linewidth = 1.5,
-               data = densdf |> summarise(mm = median(ihs_i.netwealth), .by = c(d.fambg10_culture, sample)))  + 
+               data = agedf |> summarise(mm = median(ihs_i.netwealth), .by = c(variable, sample))) +
   scale_fill_manual(values = c("No" = "royalblue4", "Yes" = "coral4"), 
                     aesthetics = c("color","fill")) +
-  scale_x_continuous(sec.axis = sec_axis(~., name = "Attended cultural activities"))+
+  scale_x_continuous(sec.axis = sec_axis(~., name = paste(xtit))) +
   labs(x="Net wealth (IHS transformed)", y=NULL,
        caption = "Data: HFCS 2014") +
   coord_cartesian(xlim = c(0, NA)) +
@@ -237,19 +282,57 @@ densdf |>
         strip.text.y = element_text(size = 16, hjust = 0.5, margin = margin(r = 5, unit = "pt")),
         axis.text = element_blank(),
         axis.title = element_text(size = 16))
-```
+}
 
+ageplot(xvar = "d.educ_father_highersecond", xtit = "High education of father")
+```
+:::
+
+:::{#cr-age-books}
+```{r age-books}
+#| output: 'asis'
+#| fig-asp: 1.1
+#| warning: false
+ageplot(xvar = "d.books3", xtit = "More than 100 books")
+```
+:::
+
+:::{#cr-age-cultact}
+```{r age-cultact}
+#| output: 'asis'
+#| fig-asp: 1.1
+#| warning: false
+ageplot(xvar = "d.fambg10_culture", xtit = "Attended cultural activities")
+```
 :::
 
 @cr-age
 
-We further distinguish between a younger and older sample with a threshold of 50 years of age. This figure shows the descriptive results for the attendence of cultural activities in childhood. @cr-age
+We further distinguish between a younger and older sample with a threshold of 50 years of age. The differences in median net wealth by cultural capital endowment are present in both age groups, like here for the **education of the father**. @cr-age
 
-We find differences between the age groups also in the multivariate analysis. The results suggest distinct cohort effects with particularly strong effects for the older age group and a less pronounced and only partially significant nexus for younger individuals. @cr-age
+The differences with respect to the age cohort are also visible for the number of **books in the parental household**...@cr-age-books
 
-The role of cultural capital may thus have altered during the course of social change, for instance, due to educational expansion and technological change that may have facilitated access to cultural capital and reduced intergenerational persistence. @cr-age
+...and for the regular attendence of **cultural activities in childhood**. @cr-age-cultact
+
+@cr-age-cultact
 
 :::
+
+We thus conduct multivariate analyses for both age groups separately. The results suggest stronger effects of cultural capital on wealth for the older age group. An explanation could be that the role of cultural capital may have altered due to educational expansion and technological change that facilitated access to cultural capital for the many.
+
+:::{.tbl-classic .tbl-smaller}
+|   | Obs. | (1)<br>EF | (2)<br>B | (3)<br>CA | (4)<br>EF, B, CA |
+|---|:---:|:------:|:-----:|:------:|:------------:|
+| Younger cohort <br> (35-50 yrs) | 1,281 | 0.385 (0.630) | 0.651 (0.506) | *0.828* (0.452) | 2.205 (1.610) |
+| Older cohort <br> (51-70 yrs) | 1,730 | **0.985** (0.314) | **0.886** (0.275) | **1.099** (0.265) | **2.775** (0.600) |
+: Total effects of mediation analysis for net wealth by age group {tbl-colwidths="[28,8,16,16,16,16]"}
+:::
+
+:::{.tbl-note}
+Standard errors in parentheses. p < 0.05 in italics and p < 0.01 in bold.<br>EF = high education of father, B = >100 books, CA = attended cultural activities.
+:::
+
+\
 
 In our paper, we check robustness of the results with various specifications. First, we use alternative (binary) indicators for the institutionalized state, for instance, the education of the mother. Then, we adjust the threshold for the objectified cultural capital from having over 100 books to over 50 books and over 200 books. We also use gross rather than net wealth and different age thresholds for splitting the younger and older cohort. Overall, the various robustness checks do not alter the results in any unexpected way. We are thus confident that the main findings are robust.
 
