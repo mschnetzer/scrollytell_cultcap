@@ -65,6 +65,10 @@ body, section, header {
   padding: 0em;
 }
 
+.cr-section.overlay-center .narrative-col .trigger .narrative p {
+  padding: 1% !important;
+}
+
 #info {
   background-color:linen !important;
   position: fixed;
